@@ -1,0 +1,55 @@
+
+
+{% extends 'users/base.html' %} 
+
+{% load static %}
+
+{% block content %} 
+
+<section class="__container section popup-section">
+  <div class="popup profile-popup">
+      <div class="popup__body profile__body">
+          <div class="profile__avatar avatar">
+              <img src="{{ profile.profile_image.url  }}" alt="">
+          </div>
+          <div class="profile__name name">
+            {{ profile.first_name }}
+          </div>
+
+          <div class="qr__image">
+              <img src="{{ profile.qrcode.url  }}" alt="">
+          </div>
+
+          <div class="profile__contacts">
+              <div class="subtitle">Наши соц. сети</div>
+              <div class="contacts">
+                  <a href="https://www.instagram.com/reel/CpnHSqfIvRJ/?igshid=YmMyMTA2M2Y=" target="_blank"><img src="{% static 'images/contacts/instagramm.svg' %}" alt=""></a>
+                  <a href="https://vk.com/pit_models_fitness" target="_blank"><img src="{% static 'images/contacts/vk.svg' %}" alt=""></a>
+                  <a href="@Maxbeliy" target="_blank"><img src="{% static 'images/contacts/telegramm.svg' %}" alt=""></a>
+                  
+              </div>
+          </div>    
+      </div>
+
+      {% include 'user-menu.html' %}
+  </div>
+  
+</section>
+
+
+
+
+
+<!-- --------------------------------------------------------------- -->
+<!-- <div class="card" style="width: 18rem;">
+    <img src="{{ profile.qrcode.url  }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text"><b>Имя:</b> {{ profile.first_name }}</p>
+      <p class="card-text"><b>Фамилия: </b>{{ profile.last_name }}</p>
+      <p class="card-text"><b>Телефон: </b>{{ profile.phoneNumber}}</p>
+    </div>
+  </div>
+
+   -->
+{% endblock %}
+

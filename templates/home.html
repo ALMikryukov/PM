@@ -1,0 +1,42 @@
+<!-- 
+{% extends 'base.html' %} 
+{% load static %} 
+ {% block content %} 
+<img src="{% static 'pm_logo.svg'%}" alt="logo" >
+{% endblock %} -->
+
+
+
+ <!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+    <section class="main section">
+        <div class="__container">
+            <div class="block-body main__body">
+                <div class="logo">
+                    <img src="/src/img/logo.svg" alt="">
+                </div>
+                <div class="main__info">
+                    <div class="title">
+                        Тренируйтесь <br> вместе с нами
+                    </div>
+                    <div class="main__btn orange-btn btn">
+                        <a href="#">Начать</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>

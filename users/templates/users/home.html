@@ -1,0 +1,24 @@
+{% extends 'users/base.html' %} 
+{% load static %}
+{% block content %} 
+
+    <section class="main section">
+        <div class="__container">
+            <div class="block-body main__body">
+                <div class="logo">
+                    <img src="{% static '/images/logo.svg' %}" alt="">
+                </div>
+                <div class="main__info">
+                    <div class="title">
+                        Тренируйтесь <br> вместе с нами
+                    </div>
+                    <div class="main__btn orange-btn btn">
+                        <a href="{% url 'login' %}">Начать</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+    

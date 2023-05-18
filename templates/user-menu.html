@@ -1,0 +1,7 @@
+{% load static %}
+<ul class="menu">
+    <li><a href="{% url 'balance' %}"><img src="{% static 'images/menu/wallet.svg' %}" alt=""></a></li>
+    <li><a href="{% url 'user-profile' profile.id %}"><img src="{% static 'images/menu/qr.svg' %}" alt=""></a></li>
+    <li><a href="{% url 'edit-account' %}"><img src="{% static 'images/menu/user.svg' %}" alt=""></a></li>
+    <li><a href="http://127.0.0.1:8000/users/edit-balance/{{ profile.id }}"><img src="{% static 'images/menu/qr.svg' %}" alt=""></a></li>
+</ul>
