@@ -186,6 +186,7 @@ select {
   padding: 12px 16px;
   border-radius: 8px;
   border: none;
+  outline: none;
 }
 
 .link {
