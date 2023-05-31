@@ -1,4 +1,4 @@
-
+    
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
@@ -18,6 +18,9 @@ path('profile/<str:pk>/', views.userProfile, name='user-profile'),
 path('edit-account/', views.editAccount, name='edit-account'),
 
 path('edit-balance/<str:pk>/', views.editProfileBalance, name='edit-balance'),
+
+path('edit-balance-prev/<str:pk>/', views.editProfileBalancePrev, name='edit-balance-prev'),
+
 
 path('balance', views.balance, name='balance'),
 ]

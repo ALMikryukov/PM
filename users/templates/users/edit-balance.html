@@ -6,26 +6,26 @@
 {% endblock css %} 
 
 {% block content %}
-
+<!-- 
     <h1>Счёт: {{ balance }}</h1>
     {{input_}}
     {{ profile.phoneNumber }}
     {{ profile.user }}
     <img src="{{ profile.profile_image.url  }}" alt="" style="width:200px;">
     <img src="{{ profile.qrcode.url  }}" alt="" style="width:200px;">
-    <br><br>
+    <br><br> -->
 
-    <form action="" method="POST">
+    <!-- <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="добавить">
 
 
 
-    </form> 
+    </form>  -->
     <br><br>
 
-    {% for transaction in transactions %}
+    <!-- {% for transaction in transactions %}
     {{transaction.title}} {{transaction.amount}} {{transaction.owner}} {{transaction.amountr}} 
     {% if transaction.is_deposit %}
     <p>+</p>
@@ -33,7 +33,7 @@
     <p>-</p>
     
     {% endif %}
-    {% endfor %}
+    {% endfor %} -->
     <section class="__container section popup-section">
             
         <div class="popup">

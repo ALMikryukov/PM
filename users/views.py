@@ -55,7 +55,6 @@ def registerUser(request):
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
-
             messages.success(request, 'User account was created!')
 
             login(request, user)
@@ -77,10 +76,11 @@ def registerUser(request):
 @login_required(login_url='login')
 def profiles(request):
     qrs = Profile.objects.all()
-    context = { }
+    context = {'qrs':qrs }
     
-
     return render(request, 'users/profiles.html', context)
+
+
 
 @login_required(login_url='login')
 def userProfile(request, pk):
@@ -99,7 +99,7 @@ def editAccount(request):
             form.save()
             return redirect('user-profile', request.user.profile.id )
 
-    context = {'form': form}
+    context = {'form': form, 'profile': profile}
     return render(request, 'users/profile-form.html', context)
 
 
@@ -128,15 +128,18 @@ def editProfileBalance(request, pk):
     #     newTransaction.save()
     #     return redirect ('edit-balance', profile.id)
     if request.method == 'POST':
-        Transaction.objects.create(owner= profile.user, amount=request.POST["input-numeric"] )
+        is_deposit =  'yes' == request.POST['switch-one']
+        Transaction.objects.create(owner= profile.user, amount=request.POST["input-numeric"], is_deposit = is_deposit)
 
-    for x in transactions:
-        if x.is_deposit:
-            balance += x.amount
-        else:
-            balance -= x.amount
+    
+        for x in transactions:
+            if x.is_deposit:
+                balance += x.amount
+            else:
+                balance -= x.amount
+        return redirect('edit-balance-prev', request.user.profile.id )
     # input_ = request.POST["input-numeric"]
-    print(request.POST)
+    # print(request.POST['switch-one'])
  
     context = { 'profile' : profile,'form':form, 'transactions': transactions, 'balance':balance,  }
     return render(request, 'users/edit-balance.html', context, )
@@ -154,3 +157,25 @@ def balance(request):
     context = {'profile': profile, 'transactions':transactions, 'balance':balance, 'page':page}
 
     return render(request, 'users/balance.html',context )
+
+@admin_only
+def editProfileBalancePrev(request, pk):
+    profile = Profile.objects.get(id=pk)
+    form = TransactionForm()
+    transactions = profile.user.transaction_set.all()
+    balance = 0
+
+    if request.method == 'POST':
+        is_deposit =  'yes' == request.POST['switch-one']
+        Transaction.objects.create(owner= profile.user, amount=request.POST["input-numeric"], is_deposit = is_deposit)
+
+    
+        for x in transactions:
+            if x.is_deposit:
+                balance += x.amount
+            else:
+                balance -= x.amount
+        return redirect('user-profile', request.user.profile.id )
+
+    context = { 'profile' : profile,'form':form, 'transactions': transactions, 'balance':balance,  }
+    return render(request, 'users/edit-balance-prev.html', context, )

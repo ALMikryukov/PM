@@ -1,0 +1,80 @@
+{% extends 'base.html' %} 
+{% block title %}<title>Users</title> {% endblock %}
+
+{% block content %}
+<section class="__container section popup-section">
+
+        
+
+    <div class="popup info-user">
+        <div class="popup__body profile__body info-user__body">
+            <div class="profile__avatar avatar">
+                <img src="{{ profile.profile_image.url  }}" alt="">
+            </div>
+            <div class="profile__name name">
+                {{ profile.first_name}} {{ profile.last_name}}
+            </div>
+
+            <div class="info-user__balance">
+                <p class="info-user__subtitle">Текущий баланс</p>
+                <span>{{ balance }}</span>
+            </div>
+
+            <div class="">
+                <div class="subtitle">История платежей:</div>
+                <div class="transactions">
+                    {% for transaction in transactions %}
+
+                    <div class="transaction">
+                        <img src="src/img/balance/dollar.svg" alt="">
+                        <div class="transaction__info">
+                            <p class="transaction__title">
+                                {% if transaction.is_deposit %}
+                                <p class="transaction__title">Пополнение</p>
+                                {% else %}
+                                <p class="transaction__title">Списание</p>
+                                {% endif %}
+                                
+                            </p>
+                            <p class="transaction__data">28 Nov 2021 • 12:01</p>
+                        </div>
+
+                        
+                        {% if transaction.is_deposit %}
+                        <p class="transaction__price replenishment"> + {{transaction.amount|floatformat:"0"}}</p>
+                        {% else %}
+                        <p class="transaction__price write-off">- {{transaction.amount|floatformat:"0"}}</p>
+                        {% endif %}  
+                   
+                    </div>
+                    {% endfor %}
+
+
+ 
+
+
+                </div>
+            </div>
+            
+
+            <div class="info-user__buttons">
+                <div class="orange-btn btn">
+                    <a href="{% url 'edit-balance' profile.id %}">Изменить баланс</a>
+                </div>
+                <div class="gray-btn btn">
+                    <a href="{% url 'user-profile' profile.id %}">Отмена</a>
+                </div>
+            </div>
+            
+
+
+
+        </div>
+
+    </div>
+
+
+
+</section> 
+
+{% endblock content %}

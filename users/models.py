@@ -10,8 +10,6 @@ from django.conf import settings
 
 
 
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=200, null=True, blank=True)
@@ -28,6 +26,15 @@ class Profile(models.Model):
     
     def save(self, *args, **kwargs):
         qrcode_img= qrcode.make(f'{self.first_name} http://127.0.0.1:8000/users/edit-balance/{self.id}')
+        # qrcode_img.save()
+        # file_stream = io.BytesIO()
+        # qrcode_img.save(file_stream)
+        # file_stream.seek(0)
+        # file_name = f'qrcode_{self.id}.png'
+        # file = InMemoryUploadedFile(file_stream, None, file_name, 'image/png', file_stream.getbuffer().nbytes, None)
+        # self.qrcode_image.save(file_name, file)
+        # super().save(*args, **kwargs)
+        # --------------------------------------------
         canvas = Image.new('RGB', (500,500), 'white')
         draw = ImageDraw.Draw(canvas)
         canvas.paste(qrcode_img)

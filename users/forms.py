@@ -39,15 +39,29 @@ class CastomUserCreationForm(UserCreationForm):
 
 
 class ProfileForm(ModelForm):
+     
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'profile-changes__input',
+                                                             'placeholder': 'имя пользователя'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'profile-changes__input',
+                                                             'placeholder': 'фамилия'}))
+
+    
+    phoneNumber =  forms.CharField(widget=forms.TextInput(attrs={'class': 'profile-changes__input',
+                                                             'placeholder': 'номер телефона'})) 
+    
+    profile_image = forms.ImageField(widget=forms.FileInput(attrs={}))
+    
+
+
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name' , 'profile_image' , 'phoneNumber']
+        fields = ['first_name', 'last_name' , 'profile_image' ,  'phoneNumber']
  
-    def __init__(self, *agrs ,**kwargs):
-        super(ProfileForm, self).__init__(*agrs, **kwargs)
+    # def __init__(self, *agrs ,**kwargs):
+    #     super(ProfileForm, self).__init__(*agrs, **kwargs)
 
-        for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'input'})
+    #     for name, field in self.fields.items():
+    #         field.widget.attrs.update({'class': 'input'})
 
 
 class TransactionForm(ModelForm):
